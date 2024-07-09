@@ -362,4 +362,4 @@ class NDR_TRADING_BOT:
 if __name__ == "__main__":
     analysis = NDR_TRADING_BOT()
     base_path = '/Users/zw/Desktop/5dr.data'
-    analysis.read_and_concatenateHS300(base_path, 2012, 2012)
+    analysis.read_and_concatenateHS300(base_path, 2012, 2019)
