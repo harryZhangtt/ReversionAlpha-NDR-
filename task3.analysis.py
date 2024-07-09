@@ -15,16 +15,16 @@ class NDR:
     """
     def __init__(self, file_path):
         # specify base path for file concatenation
-        # base_path = '/Users/zw/Desktop/5dr.data'
-        # start_year = 2012
-        # end_year = 2019
-        # output_csv_path = '/Users/zw/Desktop/combined_data.csv'
-        #
-        # # Get the concatenated DataFrame
-        # combined_data = self.read_and_concatenate(base_path, start_year, end_year)
-        #
-        # # Save the combined DataFrame to a CSV file
-        # self.save_data(combined_data, output_csv_path)
+        base_path = '/Users/zw/Desktop/5dr.data'
+        start_year = 2012
+        end_year = 2019
+        output_csv_path = '/Users/zw/Desktop/combined_data.csv'
+        
+        # Get the concatenated DataFrame
+        combined_data = self.read_and_concatenate(base_path, start_year, end_year)
+        
+        # Save the combined DataFrame to a CSV file
+        self.save_data(combined_data, output_csv_path)
         self.file_path = file_path
         self.data = self.load_data()
 
@@ -949,97 +949,6 @@ class NDR:
             return aggregated
 
         aggregated= industry_pnl_stats(df, aggregated, vector)
-
-
-        # def plot_recent_performance(stats):
-        #     """
-        #     Plots recent performance metrics based on the provided stats and factor data.
-        #
-        #     Parameters:
-        #     stats (DataFrame): DataFrame containing various statistics including normalized alpha, neutral alpha, and next day returns.
-        #     """
-        #
-        #     # Extract relevant data from stats DataFrame
-        #     factor_data = stats['normalized_factor']
-        #     neutral_factor_data = stats['neutral_alpha']
-        #
-        #
-        #
-        #
-        #     # 3.3 Plot distribution of raw and neutral factor values
-        #     fig, ax1 = plt.subplots(figsize=(14, 7))
-        #     ax2 = ax1.twinx()
-        #
-        #     # Plot histograms
-        #     factor_data.hist(bins=50, ax=ax1, alpha=0.7, color='blue')
-        #     neutral_factor_data.hist(bins=50, ax=ax2, alpha=0.7, color='red')
-        #
-        #     # Set labels and title
-        #     ax1.set_xlabel('Factor Value')
-        #     ax1.set_ylabel('Raw Factor Distribution', color='blue')
-        #     ax2.set_ylabel('Neutral Factor Distribution', color='red')
-        #     plt.title('Distribution of Raw and Neutral Factors')
-        #
-        #     # Create legends
-        #     ax1_lines, ax1_labels = ax1.get_legend_handles_labels()
-        #     ax2_lines, ax2_labels = ax2.get_legend_handles_labels()
-        #
-        #     # Add legends to the plot
-        #     ax1.legend(ax1_lines, ['Raw Factor'], loc='upper left')
-        #     ax2.legend(ax2_lines, ['Neutral Factor'], loc='upper right')
-        #
-        #     plt.show()
-        #
-        #     def calculate_ic_means(factor_data, neutral_factor_data, stats, max_delay=30):
-        #         delays = range(1, max_delay + 1)
-        #         raw_ic_means = []
-        #         neutral_ic_means = []
-        #
-        #         for delay in delays:
-        #             shifted_returns = stats.groupby('SECU_CODE')['next_day_return'].shift(-delay)
-        #
-        #             raw_ic = factor_data.corr(shifted_returns)
-        #             neutral_ic = neutral_factor_data.corr(shifted_returns)
-        #
-        #             raw_ic_means.append(raw_ic)
-        #             neutral_ic_means.append(neutral_ic)
-        #
-        #         return delays, raw_ic_means, neutral_ic_means
-        #
-        #     # Plot IC mean values for different delays
-        #     def plot_ic_means(delays, raw_ic_means, neutral_ic_means):
-        #         fig, ax = plt.subplots(figsize=(14, 7))
-        #
-        #         ax.plot(delays, raw_ic_means, label='Raw IC Mean', color='blue')
-        #         ax.plot(delays, neutral_ic_means, label='Neutral IC Mean', color='red')
-        #
-        #         ax.set_title('IC Mean Values for Different Delays')
-        #         ax.set_xlabel('Delay (days)')
-        #         ax.set_ylabel('IC Mean')
-        #         ax.legend()
-        #
-        #         plt.show()
-        #
-        #     # Example usage
-        #     delays, raw_ic_means, neutral_ic_means = calculate_ic_means(factor_data, neutral_factor_data, stats)
-        #     plot_ic_means(delays, raw_ic_means, neutral_ic_means)
-        #
-        #     # 3.9 Plot average daily number of stocks selected by factor across industries
-        #     daily_stock_counts_raw = stats.groupby(['TRADINGDAY_x', 'SW2014F']).apply(
-        #         lambda x: (factor_data.loc[x.index] > 0).sum())
-        #     daily_stock_counts_neutral = stats.groupby(['TRADINGDAY_x', 'SW2014F']).apply(
-        #         lambda x: (neutral_factor_data.loc[x.index] > 0).sum())
-        #     daily_avg_stock_counts_raw = daily_stock_counts_raw.groupby('SW2014F').mean()
-        #     daily_avg_stock_counts_neutral = daily_stock_counts_neutral.groupby('SW2014F').mean()
-        #     fig, ax = plt.subplots(figsize=(14, 7))
-        #     daily_avg_stock_counts_raw.plot(kind='line', ax=ax, label='Raw Factor')
-        #     daily_avg_stock_counts_neutral.plot(kind='line', ax=ax, label='Neutral Factor')
-        #     ax.set_title('Average Daily Number of Stocks Selected by Factor Across Industries')
-        #     ax.set_xlabel('Industry')
-        #     ax.set_ylabel('Average Number of Stocks')
-        #     ax.legend()
-        #     plt.show()
-        # plot_recent_performance(df)
 
         def plot_recent_performance(stats):
             """
